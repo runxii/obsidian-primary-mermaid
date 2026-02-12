@@ -1,0 +1,223 @@
+/* 1) Inject variables into the Mermaid container AND the SVG itself */
+.markdown-rendered .mermaid,
+.markdown-preview-view .mermaid,
+.markdown-source-view.mod-cm6 .mermaid,
+.cm-preview-code-block .mermaid,
+.markdown-rendered .mermaid svg,
+.markdown-preview-view .mermaid svg,
+.markdown-source-view.mod-cm6 .mermaid svg,
+.cm-preview-code-block .mermaid svg {
+    --mm-bg: var(--background-primary);
+    --mm-fg: var(--text-normal);
+    --mm-fg-muted: var(--text-muted);
+    --mm-border: var(--background-modifier-border);
+    --mm-accent: var(--interactive-accent);
+    --mm-accent-hover: var(--interactive-accent-hover, var(--interactive-accent));
+    --mm-highlight-bg: rgb(157, 191, 221);
+    --mm-note-bg: var(--color-l-yellow-10);
+    --mm-bold: var(--color-l-red-20);
+}
+
+svg[id^="m"][width][height][viewBox] {
+    max-width: 95%;
+    max-height: 95%;
+}
+
+div.mermaid {
+    margin-left: 0 !important;
+    text-align: center;
+    color: var(--mm-fg);
+    /*resize:both;
+    overflow:auto;
+    margin-bottom: 2px;
+    position:relative;
+    max-height: 600px;
+    max-width: 100%;
+    border-radius: 20px;
+    border: 2px solid var(--mm-border);*/
+    background: var(--mm-bg);
+}
+
+/*div.mermaid::after {*/
+/*    content:'';*/
+/*    display:block;*/
+/*    width:10px;*/
+/*    height:10px;*/
+/*    background-color:yellowgreen;*/
+/*    position:absolute;*/
+/*    right:0;*/
+/*    bottom:0;*/
+/*}*/
+
+/* === Mermaid: follow Obsidian primary surfaces + accent ===
+   Works in Reading + Live Preview by injecting vars into SVG scope.
+*/
+/* 2) Nodes */
+.markdown-rendered .mermaid .node rect,
+.markdown-rendered .mermaid .node circle,
+.markdown-rendered .mermaid .node ellipse,
+.markdown-rendered .mermaid .node polygon,
+.markdown-preview-view .mermaid .node rect,
+.markdown-preview-view .mermaid .node circle,
+.markdown-preview-view .mermaid .node ellipse,
+.markdown-preview-view .mermaid .node polygon,
+.markdown-source-view.mod-cm6 .mermaid .node rect,
+.markdown-source-view.mod-cm6 .mermaid .node circle,
+.markdown-source-view.mod-cm6 .mermaid .node ellipse,
+.markdown-source-view.mod-cm6 .mermaid .node polygon {
+    fill: color-mix(in srgb, var(--mm-bg) 50%, var(--mm-border)) !important;
+    stroke: var(--mm-border) !important;
+    stroke-width: 1.25px !important;
+}
+
+/* 4) Edges + arrowheads */
+.markdown-rendered .mermaid .edgePath path,
+.markdown-preview-view .mermaid .edgePath path,
+.markdown-source-view.mod-cm6 .mermaid .edgePath path {
+    stroke: var(--mm-border) !important;
+    stroke-width: 1.25px !important;
+}
+
+.markdown-rendered .mermaid .arrowheadPath,
+.markdown-preview-view .mermaid .arrowheadPath,
+.markdown-source-view.mod-cm6 .mermaid .arrowheadPath {
+    fill: var(--mm-border) !important;
+    stroke: var(--mm-border) !important;
+}
+
+/* 5) Subgraph / cluster */
+.markdown-rendered .mermaid .cluster rect,
+.markdown-preview-view .mermaid .cluster rect,
+.markdown-source-view.mod-cm6 .mermaid .cluster rect {
+    fill: color-mix(in srgb, var(--mm-bg) 88%, var(--mm-border)) !important;
+    stroke: var(--mm-border) !important;
+}
+
+/* 6) Optional: accent class (manual highlight) */
+.markdown-rendered .mermaid .node.accent rect,
+.markdown-rendered .mermaid .node.accent circle,
+.markdown-rendered .mermaid .node.accent ellipse,
+.markdown-rendered .mermaid .node.accent polygon,
+.markdown-preview-view .mermaid .node.accent rect,
+.markdown-preview-view .mermaid .node.accent circle,
+.markdown-preview-view .mermaid .node.accent ellipse,
+.markdown-preview-view .mermaid .node.accent polygon,
+.markdown-source-view.mod-cm6 .mermaid .node.accent rect,
+.markdown-source-view.mod-cm6 .mermaid .node.accent circle,
+.markdown-source-view.mod-cm6 .mermaid .node.accent ellipse,
+.markdown-source-view.mod-cm6 .mermaid .node.accent polygon {
+    fill: var(--mm-border) !important;
+    stroke: var(--mm-accent) !important;
+    stroke-width: 2px !important;
+}
+
+/* ============================
+   Mermaid Sequence Diagram styling
+   ============================ */
+
+/* 2) Rects (actors, notes, activations, groups) */
+.markdown-rendered .mermaid svg .actor,
+.markdown-preview-view .mermaid svg .actor,
+.markdown-source-view.mod-cm6 .mermaid svg .actor,
+.cm-preview-code-block .mermaid svg .actor {
+    fill: color-mix(in srgb, var(--mm-bg) 50%, var(--mm-border)) !important;
+    stroke: var(--mm-border) !important;
+    stroke-width: 1.2px !important;
+}
+
+/*.markdown-rendered .mermaid svg text.actor,*/
+/*.markdown-preview-view .mermaid svg text.actor,*/
+/*.markdown-source-view.mod-cm6 .mermaid svg text.actor,*/
+/*.cm-preview-code-block .mermaid svg text.actor{*/
+/*    fill: var(--mm-bold);*/
+/*    stroke: var(--mm-bold);*/
+/*}*/
+
+
+/* 3) Lines & paths (message lines, lifelines, group borders) */
+.markdown-rendered .mermaid svg line,
+.markdown-preview-view .mermaid svg line,
+.markdown-source-view.mod-cm6 .mermaid svg line,
+.cm-preview-code-block .mermaid svg line,
+.markdown-rendered .mermaid svg path,
+.markdown-preview-view .mermaid svg path,
+.markdown-source-view.mod-cm6 .mermaid svg path,
+.cm-preview-code-block .mermaid svg path {
+    stroke: var(--mm-accent) !important;
+    stroke-width: 1.2px !important;
+}
+
+/* 4) Arrowheads (markers) */
+.markdown-rendered .mermaid svg marker path,
+.markdown-preview-view .mermaid svg marker path,
+.markdown-source-view.mod-cm6 .mermaid svg marker path,
+.cm-preview-code-block .mermaid svg marker path {
+    fill: var(--mm-accent) !important;
+    stroke: var(--mm-accent) !important;
+}
+
+/* 5) Notes should be slightly tinted (if notes are rects, override by heuristic: keep as bg mix) */
+.markdown-rendered .mermaid svg .note,
+.markdown-preview-view .mermaid svg .note,
+.markdown-source-view.mod-cm6 .mermaid svg .note,
+.cm-preview-code-block .mermaid svg .note{
+    fill: var(--mm-note-bg) !important;
+    stroke: var(--mm-note-bg) !important;
+}
+
+/* 6) Activations (if class exists) */
+.markdown-rendered .mermaid svg .activation,
+.markdown-preview-view .mermaid svg .activation,
+.markdown-source-view.mod-cm6 .mermaid svg .activation,
+.cm-preview-code-block .mermaid svg .activation{
+    fill: var(--mm-highlight-bg) !important;
+    stroke: var(--mm-highlight-bg) !important;
+}
+
+/* ==========================================
+   Mermaid sequenceDiagram theme classes
+   (stable class names per Mermaid docs)
+   ========================================== */
+
+/* Solid and dotted message lines */
+.markdown-rendered .mermaid svg .messageLine0,
+.markdown-preview-view .mermaid svg .messageLine0,
+.markdown-source-view.mod-cm6 .mermaid svg .messageLine0 {
+    stroke: color-mix(in srgb, var(--mm-border) 88%, var(--mm-accent)) !important;
+    stroke-width: 1.25px !important;
+}
+
+.markdown-rendered .mermaid svg .messageLine1,
+.markdown-preview-view .mermaid svg .messageLine1,
+.markdown-source-view.mod-cm6 .mermaid svg .messageLine1 {
+    stroke: var(--mm-accent) !important;
+    stroke-width: 1.25px !important;
+    stroke-dasharray: 5 4 !important;
+}
+
+/* Loop/alt/opt/par box border lines */
+.markdown-rendered .mermaid svg .loopLine,
+.markdown-preview-view .mermaid svg .loopLine,
+.markdown-source-view.mod-cm6 .mermaid svg .loopLine {
+    stroke: var(--mm-highlight-bg) !important;
+    stroke-width: 2px !important;
+}
+
+/* Label box (the small label area on the left/top of a loop/group) */
+.markdown-rendered .mermaid svg .labelBox,
+.markdown-preview-view .mermaid svg .labelBox,
+.markdown-source-view.mod-cm6 .mermaid svg .labelBox {
+    fill: var(--mm-highlight-bg) !important;
+    stroke: var(--mm-highlight-bg) !important;
+    stroke-width: 1.2px !important;
+}
+
+/* Autonumber circle background and border */
+.markdown-rendered .mermaid svg circle,
+.markdown-preview-view .mermaid svg circle,
+.markdown-source-view.mod-cm6 .mermaid svg circle,
+.cm-preview-code-block .mermaid svg circle {
+    fill: var(--mm-bold) !important;
+    stroke: var(--mm-bold) !important;
+    stroke-width: 1.5px !important;
+}
